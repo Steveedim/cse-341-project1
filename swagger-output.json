@@ -14,7 +14,7 @@
     "/": {
       "get": {
         "tags": [
-          "Home"
+          "Hello World"
         ],
         "description": "",
         "produces": [
