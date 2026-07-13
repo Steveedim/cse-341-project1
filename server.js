@@ -1,5 +1,5 @@
 const express = require('express');
-
+const bodyParser = require('body-parser');
 const dns = require('dns');
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
@@ -8,8 +8,16 @@ const app = express();
 
 const port = process.env.PORT || 3000;
 
+app.use(bodyParser.json());
+app.use((req, res, next) => {
+    res.setHeader(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested With, Content-Type, Accept, Accept Z-key'
+    );
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE');
+    next();
+});
 app.use('/', require('./routes'));
-
 
 
 mongodb.initDb((err) => {
